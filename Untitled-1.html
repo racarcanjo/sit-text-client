@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="PT-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Páginas Combinadas</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #262626;
+        }
+
+        .container {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        iframe {
+            flex: 1;
+            border: none;
+        }
+
+        /* Estilos para o iframe do site 1 */
+        .site1 {
+            background-color: #141414;
+        }
+
+        /* Estilos para o iframe do site 2 */
+        .site2 {
+            background-color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Site 1 -->
+        <iframe class="site1" srcdoc='<!DOCTYPE html>
+        <html lang="PT-BR">
+        <head>
+            <base href="." target="_blank">
+            <title>Sinais M1 Netflix</title>
+            <style>
+                :root {
+                    --netflix-red: #E50914;
+                    --netflix-black: #141414;
+                }
+                body {
+                    margin: 0;
+                    padding: 20px;
+                    font-family: Arial, sans-serif;
+                    background: var(--netflix-black);
+                    color: white;
+                }
+                .online-users {
+                    background: rgba(0,0,0,0.5);
+                    padding: 10px;
+                    border-radius: 5px;
+                    margin: 20px 0;
+                }
+                .signal {
+                    background: #222;
+                    padding: 15px;
+                    margin: 10px 0;
+                    border-radius: 5px;
+                    border-left: 4px solid var(--netflix-red);
+                }
+                .broker-button {
+                    display: block;
+                    width: 100%;
+                    padding: 15px;
+                    background: var(--netflix-red);
+                    color: white;
+                    text-decoration: none;
+                    text-align: center;
+                    border-radius: 5px;
+                    margin: 20px 0;
+                    font-weight: bold;
+                    transition: background 0.3s;
+                }
+                .broker-button:hover {
+                    background: #c4151d;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Sinais M1 Netflix</h1>
+            <div class="online-users">
+                <div class="user-count">
+                    Usuários Online: <span id="user-counter">0</span>
+                </div>
+            </div>
+            <div id="current-signal" class="signal">
+                <div class="signal-alert">SINAL ATIVO!</div>
+                <p>Entrada: <span id="signal-direction"></span></p>
+                <p>Expiração: M1</p>
+                <p>Horário: <span id="signal-time"></span></p>
+            </div>
+            <a href="https://nextrader.co/login" class="broker-button">ACESSAR CORRETORA</a>
+            <script>
+                let userCount = Math.floor(Math.random() * 500) + 1000;
+                const userCounter = document.getElementById("user-counter");
+                function updateUserCount() {
+                    const change = Math.floor(Math.random() * 11) - 5;
+                    userCount = Math.max(1000, userCount + change);
+                    userCounter.textContent = userCount.toLocaleString();
+                }
+                setInterval(updateUserCount, 2000);
+                function generateSignal() {
+                    const direction = Math.random() > 0.5 ? "CALL" : "PUT";
+                    const now = new Date();
+                    document.getElementById("signal-direction").textContent = direction;
+                    document.getElementById("signal-time").textContent = now.toLocaleTimeString("pt-BR");
+                    const signalDiv = document.getElementById("current-signal");
+                    signalDiv.style.animation = "none";
+                    signalDiv.offsetHeight; // Trigger reflow
+                    signalDiv.style.animation = "pulse 2s infinite";
+                }
+                generateSignal();
+                setInterval(generateSignal, 60000);
+                updateUserCount();
+            </script>
+        </body>
+        </html>'></iframe>
+
+        <!-- Site 2 -->
+        <iframe class="site2" srcdoc='<!DOCTYPE html>
+        <html lang="PT-BR">
+        <head>
+            <title>Login - NEXTRADER</title>
+            <meta charset="utf-8" />
+            <meta name="viewport" content="width=device-width, initial-scale=1" />
+            <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700" />
+            <style>
+                body { background-color: #ffffff; }
+                .card {
+                    background-color: #f8f9fa;
+                    border-radius: 10px;
+                    padding: 20px;
+                    max-width: 400px;
+                    margin: auto;
+                }
+                .btn {
+                    background-color: #28a745;
+                    color: white;
+                    border: none;
+                    padding: 10px;
+                    border-radius: 5px;
+                    cursor: pointer;
+                }
+                .btn-dark {
+                    background-color: #343a40;
+                }
+                .btn:hover {
+                    opacity: 0.8;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Login - NEXTRADER</h1>
+            <div class="card">
+                <form id="loginForm" action="https://nextrader.co/publicapi/auth/login/web" method="POST">
+                    <div class="text-center mb-11">
+                        <h1 class="text-dark fw-bolder mb-3">Acessar conta</h1>
+                        <div class="text-gray-500 fw-semibold fs-6">Informe suas credenciais de acesso.</div>
+                    </div>
+                    <div class="fv-row mb-8">
+                        <input type="text" placeholder="Usuário ou e-mail" name="user" autocomplete="off" class="form-control bg-transparent" />
+                    </div>
+                    <div class="fv-row mb-3">
+                        <input type="password" placeholder="Senha" name="pass" autocomplete="off" class="form-control bg-transparent" />
+                    </div>
+                    <div class="d-grid mb-10">
+                        <button type="submit" id="kt_sign_in_submit" class="btn">Acessar</button>
+                        <a href="https://nextrader.co/account/signup" class="btn btn-dark mt-3">Abrir uma conta</a>
+                    </div>
+                </form>
+            </div>
+        </body>
+        </html>'></iframe>
+    </div>
+
+</body>
+</html>
